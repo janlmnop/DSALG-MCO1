@@ -6,14 +6,10 @@
 ************************************************************************************/
 #include <stdio.h>
 #include "graham_scan2.c"
-#include "graham_scan2.h"
+#include "graham_scan.h"
 
 
-// BTWs
-// this file is for getting input from a file, running graham's scan, and printing the output in a file
-// not for implementing graham's scan,, there's a file for that
-
-
+// driver
 int main() {
     FILE *fp;
     String infilename;
@@ -40,6 +36,7 @@ int main() {
     while(fscanf(fp, "%lf    %lf\n", &points[i].x, &points[i].y) == 2)
         i++;
     
+    // apply Graham's Scan algorithm using heap sort
     grahamScanFastAlgo(points, &S, n);
 
     // print to file (with the correct format)
