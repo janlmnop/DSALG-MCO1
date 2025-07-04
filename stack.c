@@ -3,7 +3,7 @@
  * structure.
 ************************************************************************************/
 #include <stdio.h>
-#include "stack.h"
+#include "graham_scan2.h"
 
 
 /**
@@ -26,7 +26,7 @@ void create(struct Stack *S) {
  * @tester: Janelle Ann F. Daguiso
  */
 int isFull(struct Stack S) {
-    if (S.top == MAX-1)
+    if(S.top == MAX-1)
         return TRUE;
     else
         return FALSE;
@@ -41,69 +41,70 @@ int isFull(struct Stack S) {
  * @tester: Janelle Ann F. Daguiso
  */
 int isEmpty(struct Stack S) {
-    if (S.top == -1)
+    if(S.top == -1)
         return TRUE;
     else
         return FALSE;
 }
 
 /**
- * Inserts an element into the stack
+ * Inserts a point into the stack
  * @param S Stack structure
- * @param x Element to be inserted
+ * @param point point to be inserted
  * 
  * @author: Janelle Ann F. Daguiso
  * @tester: Janelle Ann F. Daguiso
  */
-void push(struct Stack *S, double x) {
+void push(struct Stack *S, struct Point point) {
     if((!isFull(*S)) == TRUE) {
         S->top++;
-        S->S[S->top] = x; 
+        S->points[S->top].x = point.x;
+        S->points[S->top].y = point.y;
     }
     else 
         printf("Stack full!");
 }
 
 /**
- * Removes the top most element from the stack
+ * Removes the top most point from the stack
  * @param S Stack structure
- * @return the value of the top most element from the stack
+ * @return the coordinates of the top most point from the stack
  * 
  * @author: Janelle Ann F. Daguiso
  * @tester: Janelle Ann F. Daguiso
  */
-double pop(struct Stack *S) {
-    if ((!isEmpty(*S)) == TRUE) {
-        return S->S[S->top--];
+struct Point pop(struct Stack *S) {
+    if((!isEmpty(*S)) == TRUE) {
+        return S->points[S->top--];
     }
     else {
         printf("Stack empty!");
-        return -1;
+        return  S->points[0];
     }
 }
 
 /**
- * Returns the value of the top most element
+ * Returns the coordinates of the top most point
  * @param S Stack structure
- * @return the value of the top most element from the stack
+ * @return the coordinates of the top most point from the stack
  * 
  * @author: Janelle Ann F. Daguiso
  * @tester: Janelle Ann F. Daguiso
  */
-double top(struct Stack S) {
-    return S.S[S.top];
+struct Point top(struct Stack S) {
+    return S.points[S.top];
 }
 
 /**
- * Returns the value below the top most element
+ * Returns the point below the top most point
  * @param S Stack structure
  * @return the value of the element below the top element
  * 
  * @author: Janelle Ann F. Daguiso
  * @tester: Janelle Ann F. Daguiso
  */
-double nextToTop(struct Stack S) {
-    return S.S[S.top-1];
+struct Point nextToTop(struct Stack S) {
+    return S.points[S.top-1];
 }
 
 /**
@@ -115,7 +116,7 @@ double nextToTop(struct Stack S) {
  */
 void displayStack(struct Stack *S) {
     for(int i=0; i<S->top+1; i++)
-        printf("%0.6f\n", S->S[i]);
+        printf("%9.6lf%11.6lf\n", S->points[i].x, S->points[i].y);
 }
 
 
