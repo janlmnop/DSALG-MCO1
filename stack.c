@@ -3,7 +3,7 @@
  * structure.
 ************************************************************************************/
 #include <stdio.h>
-#include "graham_scan2.h"
+#include "graham_scan.h"
 
 
 /**
