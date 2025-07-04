@@ -3,7 +3,7 @@
  * sorting algorithm).
 ************************************************************************************/
 #include <stdio.h>
-#include "graham_scan2.h"
+#include "graham_scan.h"
 
 
 /**
@@ -67,7 +67,7 @@ void heapify(struct Point points[], double angles[], int n, int i) {
 
 
 /**
- * Heapifies all points based on their angle and arranges them in ascending order.
+ * Sorts elements by finding the smallest value in the array and swapping it with the first unsorted element
  * @param points array of n points
  * @param angles array of angles
  * @param n number of points
